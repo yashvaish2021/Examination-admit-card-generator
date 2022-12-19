@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: white;
+}
+
+body {
+    background-color: #212529;
+}
+
+.logo {
+    height: 70px;
+    width: 360px;
+}
+
+.nav-color {
+    background-color: white;
+}
+
+.nav-item {
+    font-size: 18px;
+}
+
+.nav-link {
+    color: orange;
+}
+
+.image {
+    height: 87vh;
+}
