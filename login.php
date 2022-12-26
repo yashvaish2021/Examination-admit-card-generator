@@ -50,10 +50,10 @@
                                             <button class="btn btn-dark btn-lg btn-block" type="button">Login</button>
                                         </div>
 
-                                        <a class="small text-muted" href="forgotpassword.html" target="_blank">Forgot
+                                        <a class="small text-muted" href="forgotpassword.php" target="_blank">Forgot
                                             password?</a>
                                         <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a
-                                                href="register.html" style="color: #393f81;" target="_blank">Register
+                                                href="register.php" style="color: #393f81;" target="_blank">Register
                                                 here</a></p>
                                         <a href="https://dseu.ac.in/terms-and-conditions/" class="small text-muted"
                                             target="_blank">Terms of use.</a>
