@@ -1,3 +1,21 @@
+<?php
+    $con = mysqli_connect('localhost','root');
+	mysqli_select_db($con,'dseu');
+	if(isset($_POST['submit'])){
+		$username = $_POST['email'];
+		$password = $_POST['password'];
+		$q = " SELECT * FROM register WHERE email='$username' and password='$password' ";
+		$query = mysqli_query($con,$q);
+		$count = mysqli_num_rows($query);
+		if($count>0){
+			echo "Login Successfully";
+			// echo " <script> window.location = 'Student Registration Form.php'; </script> ";
+		}
+		else{
+			echo "Fail to Login";
+		}
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +43,7 @@
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                 <div class="card-body p-4 p-lg-5 text-black">
 
-                                    <form>
+                                    <form method="POST">
 
                                         <div class="d-flex align-items-center mb-3 pb-1">
                                             <span class="h1 fw-bold mb-0">Login</span>
@@ -36,18 +54,18 @@
 
                                         <div class="form-outline mb-4">
                                             <input type="email" id="form2Example17"
-                                                class="form-control form-control-lg" />
+                                                class="form-control form-control-lg" name="email"/>
                                             <label class="form-label" for="form2Example17">Email address</label>
                                         </div>
 
                                         <div class="form-outline mb-4">
                                             <input type="password" id="form2Example27"
-                                                class="form-control form-control-lg" />
+                                                class="form-control form-control-lg" name="password"/>
                                             <label class="form-label" for="form2Example27">Password</label>
                                         </div>
 
                                         <div class="pt-1 mb-4">
-                                            <button class="btn btn-dark btn-lg btn-block" type="button">Login</button>
+                                            <button class="btn btn-dark btn-lg btn-block" type="submit" name="submit">Login</button>
                                         </div>
 
                                         <a class="small text-muted" href="forgotpassword.php" target="_blank">Forgot
