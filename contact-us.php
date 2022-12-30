@@ -2,19 +2,19 @@
 $server = "localhost";
 $username = "root";
 
-$connect = mysqli_connect($server,$username);
-mysqli_select_db($connect,'dseu');
+$connect = mysqli_connect($server, $username);
+mysqli_select_db($connect, 'dseu');
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
 
-$firstName = $_POST['First Name'];
-$lastName = $_POST['Last Name'];
-$email = $_POST['Email'];
-$comment = $_POST['Comment'];
+    $firstName = $_POST['First Name'];
+    $lastName = $_POST['Last Name'];
+    $email = $_POST['Email'];
+    $comment = $_POST['Comment'];
 
-$sql = "INSERT INTO `contact-us` (`First Name`, `Last Name`, `Email`, `Comment`,`DateTime`) VALUES ( '$firstName', '$lastName', '$email', '$comment', current_timestamp())";
-$query = mysqli_query($connect,$sql);
-echo "<script>window.location = 'contact-us.php'</script>";
+    $sql = "INSERT INTO `contact-us` (`First Name`, `Last Name`, `Email`, `Comment`,`DateTime`) VALUES ( '$firstName', '$lastName', '$email', '$comment', current_timestamp())";
+    $query = mysqli_query($connect, $sql);
+    echo "<script>window.location = 'contact-us.php'</script>";
 }
 ?>
 
@@ -115,7 +115,7 @@ echo "<script>window.location = 'contact-us.php'</script>";
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-default" name= "submit">Submit</button>
+                                <button type="submit" class="btn btn-default" name="submit">Submit</button>
                             </div>
                         </div>
                     </div>
