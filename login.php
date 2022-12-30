@@ -9,7 +9,7 @@
 		$count = mysqli_num_rows($query);
 		if($count>0){
 			echo "Login Successfully";
-			// echo " <script> window.location = 'Student Registration Form.php'; </script> ";
+			echo " <script> window.location = 'admit-card.php'; </script> ";
 		}
 		else{
 			echo "Fail to Login";
