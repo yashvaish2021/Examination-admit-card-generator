@@ -1,3 +1,23 @@
+<?php
+$server = "localhost";
+$username = "root";
+
+$connect = mysqli_connect($server,$username);
+mysqli_select_db($connect,'dseu');
+
+if(isset($_POST['submit'])){
+
+$firstName = $_POST['First Name'];
+$lastName = $_POST['Last Name'];
+$email = $_POST['Email'];
+$comment = $_POST['Comment'];
+
+$sql = "INSERT INTO `contact-us` (`First Name`, `Last Name`, `Email`, `Comment`,`DateTime`) VALUES ( '$firstName', '$lastName', '$email', '$comment', current_timestamp())";
+$query = mysqli_query($connect,$sql);
+echo "<script>window.location = 'contact-us.php'</script>";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,16 +43,16 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="index.html">Home</a>
+                            <a class="nav-link" aria-current="page" href="index.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about-us.html">About</a>
+                            <a class="nav-link" href="about-us.php">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact-us.html">Contact</a>
+                            <a class="nav-link" href="contact-us.php">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a href="login.html" target="_blank"><button type="button"
+                            <a href="login.php" target="_blank"><button type="button"
                                     class="btn btn-primary">Login/Register</button></a>
                         </li>
                     </ul>
@@ -67,35 +87,35 @@
                 <div class="col-md-9">
                     <div class="contact-form">
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="fname">First Name:</label>
+                            <label class="control-label col-sm-2" for="First Name">First Name:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="fname" placeholder="Enter First Name"
-                                    name="fname">
+                                <input type="text" class="form-control" id="First Name" placeholder="Enter First Name"
+                                    name="First Name">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="lname">Last Name:</label>
+                            <label class="control-label col-sm-2" for="Last Name">Last Name:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="lname" placeholder="Enter Last Name"
-                                    name="lname">
+                                <input type="text" class="form-control" id="Last Name" placeholder="Enter Last Name"
+                                    name="Last Name">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="email">Email:</label>
+                            <label class="control-label col-sm-2" for="Email">Email:</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="email" placeholder="Enter email"
-                                    name="email">
+                                <input type="email" class="form-control" id="Email" placeholder="Enter email"
+                                    name="Email">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="comment">Comment:</label>
+                            <label class="control-label col-sm-2" for="Comment">Comment:</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" rows="5" id="comment"></textarea>
+                                <textarea class="form-control" rows="5" id="Comment" name="Comment"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-default">Submit</button>
+                                <button type="submit" class="btn btn-default" name= "submit">Submit</button>
                             </div>
                         </div>
                     </div>

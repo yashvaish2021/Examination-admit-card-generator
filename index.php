@@ -24,16 +24,16 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="index.html">Home</a>
+                            <a class="nav-link" aria-current="page" href="index.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about-us.html">About</a>
+                            <a class="nav-link" href="about-us.php">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact-us.html">Contact</a>
+                            <a class="nav-link" href="contact-us.php">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a href="login.html" target="_blank"><button type="button"
+                            <a href="login.php" target="_blank"><button type="button"
                                     class="btn btn-primary">Login/Register</button></a>
                         </li>
                     </ul>

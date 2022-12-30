@@ -26,8 +26,8 @@
                 </div>
                 <a href="#" class="btn btn-primary w-100 text-black">Reset password</a>
                 <div class="d-flex justify-content-between mt-4">
-                    <a class="" href="login.html">Login</a>
-                    <a class="" href="register.html">Register</a>
+                    <a class="" href="login.php">Login</a>
+                    <a class="" href="register.php">Register</a>
                 </div>
             </div>
         </div>
