@@ -1,3 +1,15 @@
+<?php
+$server = "localhost";
+$username = "root";
+
+$connect = mysqli_connect($server, $username);
+mysqli_select_db($connect, 'dseu');
+if (isset($_POST['reset'])) {
+    $email = $_POST['email'];
+    $sql = "";
+    $query = mysqli_query($connect, $sql);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +36,7 @@
                     <input type="email" id="typeEmail" class="form-control my-3" placeholder="ENTER YOUR EMAIL" />
                     <!-- <label class="form-label" for="typeEmail">Email input</label> -->
                 </div>
-                <a href="#" class="btn btn-primary w-100 text-black">Reset password</a>
+                <button name="reset" class="btn btn-primary w-100 text-black">Reset password</button>
                 <div class="d-flex justify-content-between mt-4">
                     <a class="" href="login.php">Login</a>
                     <a class="" href="register.php">Register</a>
