@@ -1,14 +1,16 @@
 <?php
-    $con = mysqli_connect('localhost','root');
-    mysqli_select_db($con,'dseu');
-    if(isset($_POST['register'])){
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        $q = " INSERT INTO `register`(`name`, `email`, `password`, `datetime`) VALUES ('$name','$email','$password',current_timestamp());";
-        $query = mysqli_query($con,$q);
-        echo "<script> window.location = 'register.php';</script>";
-    }
+$server = 'localhost';
+$username = 'root';
+$con = mysqli_connect($server, $username);
+mysqli_select_db($con, 'dseu');
+if (isset($_POST['register'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $q = " INSERT INTO `register`(`name`, `email`, `password`, `datetime`) VALUES ('$name','$email','$password',current_timestamp())";
+    $query = mysqli_query($con, $q);
+    echo "<script> window.location = 'register.php';</script>";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

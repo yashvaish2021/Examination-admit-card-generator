@@ -7,15 +7,15 @@ $connect = mysqli_connect($server, $username);
 mysqli_select_db($connect, 'dseu');
 
 if (isset($_POST['submit'])) {
-    $fullName = $_POST['first name'];
+    $fullName = $_POST['fullname'];
     $date = $_POST['dob'];
     $address = $_POST['address'];
     $department = $_POST['department'];
     $testcenter = $_POST['testcenter'];
-    $fathersName = $_POST['fathers name'];
-    $mothersName = $_POST['mothers name'];
-    $phone = $_POST['Phone'];
-    $universityNumber = $_POST['university number'];
+    $fathersName = $_POST['fathersname'];
+    $mothersName = $_POST['mothersname'];
+    $phone = $_POST['phone'];
+    $universityNumber = $_POST['universitynumber'];
     $email = $_POST['email'];
     $gender = $_POST['gender'];
     $semester = $_POST['semester'];
@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
     $temp_img_signature = $_FILES['img_signature']['temp_name'];
     move_uploaded_file($img_photo, $temp_img_photo);
     move_uploaded_file($img_signature, $temp_img_signature);
-    $sql = "INSERT INTO `admitcard` (`id`, `name`, `userid`, `dob`, `address`, `department`, `semester`, `center`, `father_name`, `mother_name`, `phone`, `universirty_number`, `email`, `gender`, `photo`, `signature`) VALUES ( $fullName, '2', $date, $address, $department, $semester, $testcenter, $fathersName, $mothersName, $phone, $universityNumber, $email, $gender, $img_photo,  $img_signature)";
+    $sql = "INSERT INTO `admitcard` ( `fullname`, `userid`, `dob`, `address`, `department`, `semester`, `center`, `fathersname`, `mothersname`, `phone`, `universirtynumber`, `email`, `gender`, `img_photo`, `img_signature`) VALUES ( $fullName, '2', $date, $address, $department, $semester, $testcenter, $fathersName, $mothersName, $phone, $universityNumber, $email, $gender, $img_photo,  $img_signature)";
     $query = mysqli_query($connect, $sql);
     echo "<script>window.location = 'form.php'</script>";
 }
@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link rel="stylesheet" href="/form.css">
+    <link rel="stylesheet" href="./styles/form.css">
     <title>FORM</title>
 </head>
 
@@ -54,16 +54,19 @@ if (isset($_POST['submit'])) {
                             <div class="row">
                                 <div class="col-sm-6 form-group">
                                     <label>Full Name</label>
-                                    <input type="text" placeholder="ENTER YOUR FULL NAME" class="form-control">
+                                    <input type="text" placeholder="ENTER YOUR FULL NAME" class="form-control"
+                                        name="fullname">
                                 </div>
                                 <div class="col-sm-6 form-group">
                                     <label>Date of Birth</label>
-                                    <input type="date" placeholder="ENTER YOUR DATE OF BIRTH " class="form-control">
+                                    <input type="date" placeholder="ENTER YOUR DATE OF BIRTH " class="form-control"
+                                        name="dob">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Address</label>
-                                <textarea placeholder="ENTER YOUR ADDRESS" rows="3" class="form-control"></textarea>
+                                <textarea placeholder="ENTER YOUR ADDRESS" rows="3" class="form-control"
+                                    name="address"></textarea>
                             </div>
                             <div class="row">
                                 <div class="col-sm-4 form-group">
@@ -137,29 +140,32 @@ if (isset($_POST['submit'])) {
                             <div class="row">
                                 <div class="col-sm-6 form-group">
                                     <label>Father's Name</label>
-                                    <input type="text" placeholder="ENTER YOUR FATHER'S NAME" class="form-control">
+                                    <input type="text" placeholder="ENTER YOUR FATHER'S NAME" class="form-control"
+                                        name="fathersname">
                                 </div>
                                 <div class="col-sm-6 form-group">
                                     <label>Mother's Name</label>
-                                    <input type="text" placeholder="ENTER YOUR MOTHER'S NAME" class="form-control">
+                                    <input type="text" placeholder="ENTER YOUR MOTHER'S NAME" class="form-control"
+                                        name="mothersname">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Phone Number</label>
-                                <input type="text" placeholder="ENTER YOUR PHONE NUMBER" class="form-control">
+                                <input type="text" placeholder="ENTER YOUR PHONE NUMBER" class="form-control"
+                                    name="phone">
                             </div>
                             <div class="form-group">
                                 <label>University Enrollment No.</label>
                                 <input type="text" placeholder="ENTER YOUR UNIVERSITY ENROLLMENT NUMBER"
-                                    class="form-control">
+                                    class="form-control" name="universitynumber">
                             </div>
                             <div class="form-group">
                                 <label>Email </label>
-                                <input type="text" placeholder="ENTER YOUR EMAIL" class="form-control">
+                                <input type="text" placeholder="ENTER YOUR EMAIL" class="form-control" name="email">
                             </div>
                             <div class="form-group">
                                 <label>Gender</label>
-                                <input type="text" placeholder="ENTER YOUR GENDER" class="form-control">
+                                <input type="text" placeholder="ENTER YOUR GENDER" class="form-control" name="gender">
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 form-group">
@@ -179,7 +185,10 @@ if (isset($_POST['submit'])) {
         </div>
     </form>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
