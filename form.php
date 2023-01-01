@@ -7,26 +7,26 @@ $connect = mysqli_connect($server, $username);
 mysqli_select_db($connect, 'dseu');
 
 if (isset($_POST['submit'])) {
-    $firstName = $_POST['First Name'];
-    $lastName = $_POST['Last Name'];
-    $address = $_POST['Address'];
-    $department = $_POST['Department'];
-    $centerI = $_POST['Center I'];
-    $centerII = $_POST['Center II'];
-    $fathersName = $_POST['Fathers Name'];
-    $mothersName = $_POST['Mothers Name'];
+    $fullName = $_POST['first name'];
+    $date = $_POST['dob'];
+    $address = $_POST['address'];
+    $department = $_POST['department'];
+    $testcenter = $_POST['testcenter'];
+    $fathersName = $_POST['fathers name'];
+    $mothersName = $_POST['mothers name'];
     $phone = $_POST['Phone'];
-    $universityNumber = $_POST['University Number'];
-    $email = $_POST['Email'];
-    $gender = $_POST['Gender'];
+    $universityNumber = $_POST['university number'];
+    $email = $_POST['email'];
+    $gender = $_POST['gender'];
+    $semester = $_POST['semester'];
     $img_photo = $_FILES['img_photo']['name'];
     $temp_img_photo = $_FILES['img_photo']['temp_name'];
     $img_signature = $_FILES['img_signature']['name'];
     $temp_img_signature = $_FILES['img_signature']['temp_name'];
     move_uploaded_file($img_photo, $temp_img_photo);
     move_uploaded_file($img_signature, $temp_img_signature);
-    // $sql = ;
-    // $query = mysqli_query($connect,$sql);
+    $sql = "INSERT INTO `admitcard` (`id`, `name`, `userid`, `dob`, `address`, `department`, `semester`, `center`, `father_name`, `mother_name`, `phone`, `universirty_number`, `email`, `gender`, `photo`, `signature`) VALUES ( $fullName, '2', $date, $address, $department, $semester, $testcenter, $fathersName, $mothersName, $phone, $universityNumber, $email, $gender, $img_photo,  $img_signature)";
+    $query = mysqli_query($connect, $sql);
     echo "<script>window.location = 'form.php'</script>";
 }
 ?>
@@ -171,7 +171,7 @@ if (isset($_POST['submit'])) {
                                     <input type="file" required name="img_signature">
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-lg btn-info">Submit</button>
+                            <button type="submit" class="btn btn-lg btn-info">Submit</button>
                         </div>
                     </form>
                 </div>
