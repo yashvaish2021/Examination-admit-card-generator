@@ -1,34 +1,29 @@
 <?php
 session_start();
-$server = "localhost";
-$username = "root";
+    $server = "localhost";
+    $username = "root";
+    $connect = mysqli_connect($server, $username);
+    mysqli_select_db($connect, 'dseu');
 
-$connect = mysqli_connect($server, $username);
-mysqli_select_db($connect, 'dseu');
-
-if (isset($_POST['submit'])) {
-    $fullName = $_POST['fullname'];
-    $date = $_POST['dob'];
-    $address = $_POST['address'];
-    $department = $_POST['department'];
-    $testcenter = $_POST['testcenter'];
-    $fathersName = $_POST['fathersname'];
-    $mothersName = $_POST['mothersname'];
-    $phone = $_POST['phone'];
-    $universityNumber = $_POST['universitynumber'];
-    $email = $_POST['email'];
-    $gender = $_POST['gender'];
-    $semester = $_POST['semester'];
-    $img_photo = $_FILES['img_photo']['name'];
-    $temp_img_photo = $_FILES['img_photo']['temp_name'];
-    $img_signature = $_FILES['img_signature']['name'];
-    $temp_img_signature = $_FILES['img_signature']['temp_name'];
-    move_uploaded_file($img_photo, $temp_img_photo);
-    move_uploaded_file($img_signature, $temp_img_signature);
-    $sql = "INSERT INTO `admitcard` ( `fullname`, `userid`, `dob`, `address`, `department`, `semester`, `center`, `fathersname`, `mothersname`, `phone`, `universirtynumber`, `email`, `gender`, `img_photo`, `img_signature`) VALUES ( $fullName, '2', $date, $address, $department, $semester, $testcenter, $fathersName, $mothersName, $phone, $universityNumber, $email, $gender, $img_photo,  $img_signature)";
-    $query = mysqli_query($connect, $sql);
-    echo "<script>window.location = 'form.php'</script>";
-}
+    if (isset($_POST['submit'])) {
+        $fullName = $_POST['name'];
+        $date = $_POST['dob'];
+        $address = $_POST['address'];
+        $department = $_POST['department'];
+        $semester = $_POST['semester'];
+        $testcenter = $_POST['center'];
+        $fathersName = $_POST['father_name'];
+        $mothersName = $_POST['mother_name'];
+        $phone = $_POST['phone'];
+        $universityNumber = $_POST['university_number'];
+        $email = $_POST['email'];
+        $gender = $_POST['gender'];
+        $photo = $_FILES['image']['name'];
+        $signature = $_FILES['signature']['name'];
+        $result = " INSERT INTO `admitcard`(`name`, `dob`, `address`, `department`, `semester`, `center`, `father_name`, `mother_name`, `phone`, `university_number`, `email`, `gender`, `image`, `signature`) VALUES ('$fullName', '$date', '$address', '$department', '$semester', '$testcenter', '$fathersName', '$mothersName', '$phone', '$universityNumber', '$email', '$gender', '$photo', '$signature') ";
+        $query = mysqli_query($connect,$result);
+        echo "<script>window.location = 'form.php'</script>";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -44,29 +39,25 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-    <form method="post" action="" enctype="multipart/form-data">
-        <div class="container">
-            <h1 class="well">Registration Form</h1>
+    <div class="container">
+        <h1 class="well">Registration Form</h1>
             <div class="col-lg-12 well">
                 <div class="row">
-                    <form>
+                    <form method="post" action="" enctype="multipart/form-data">
                         <div class="col-sm-12">
                             <div class="row">
                                 <div class="col-sm-6 form-group">
                                     <label>Full Name</label>
-                                    <input type="text" placeholder="ENTER YOUR FULL NAME" class="form-control"
-                                        name="fullname">
+                                    <input type="text" placeholder="ENTER YOUR FULL NAME" class="form-control" name="name">
                                 </div>
                                 <div class="col-sm-6 form-group">
                                     <label>Date of Birth</label>
-                                    <input type="date" placeholder="ENTER YOUR DATE OF BIRTH " class="form-control"
-                                        name="dob">
+                                    <input type="date" placeholder="ENTER YOUR DATE OF BIRTH " class="form-control" name="dob">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Address</label>
-                                <textarea placeholder="ENTER YOUR ADDRESS" rows="3" class="form-control"
-                                    name="address"></textarea>
+                                <textarea placeholder="ENTER YOUR ADDRESS" rows="3" class="form-control" name="address"></textarea>
                             </div>
                             <div class="row">
                                 <div class="col-sm-4 form-group">
@@ -112,7 +103,7 @@ if (isset($_POST['submit'])) {
                                 </div>
                                 <div class="col-sm-4 form-group">
                                     <label>Choose Center :</label>
-                                    <select name="test-center" class="form-control selectpicker">
+                                    <select name="center" class="form-control selectpicker">
                                         <option value="">SELECT YOUR CENTER-</option>
                                         <option>DSEU RAJOKRI CAMPUS</option>
                                         <option>DSEU PUSA CAMPUS – II</option>
@@ -140,24 +131,20 @@ if (isset($_POST['submit'])) {
                             <div class="row">
                                 <div class="col-sm-6 form-group">
                                     <label>Father's Name</label>
-                                    <input type="text" placeholder="ENTER YOUR FATHER'S NAME" class="form-control"
-                                        name="fathersname">
+                                    <input type="text" placeholder="ENTER YOUR FATHER'S NAME" class="form-control" name="father_name">
                                 </div>
                                 <div class="col-sm-6 form-group">
                                     <label>Mother's Name</label>
-                                    <input type="text" placeholder="ENTER YOUR MOTHER'S NAME" class="form-control"
-                                        name="mothersname">
+                                    <input type="text" placeholder="ENTER YOUR MOTHER'S NAME" class="form-control" name="mother_name">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Phone Number</label>
-                                <input type="text" placeholder="ENTER YOUR PHONE NUMBER" class="form-control"
-                                    name="phone">
+                                <input type="text" placeholder="ENTER YOUR PHONE NUMBER" class="form-control" name="phone">
                             </div>
                             <div class="form-group">
                                 <label>University Enrollment No.</label>
-                                <input type="text" placeholder="ENTER YOUR UNIVERSITY ENROLLMENT NUMBER"
-                                    class="form-control" name="universitynumber">
+                                <input type="text" placeholder="ENTER YOUR UNIVERSITY ENROLLMENT NUMBER" class="form-control" name="university_number">
                             </div>
                             <div class="form-group">
                                 <label>Email </label>
@@ -170,20 +157,19 @@ if (isset($_POST['submit'])) {
                             <div class="row">
                                 <div class="col-sm-6 form-group">
                                     <label>Upload Photo</label>
-                                    <input type="file" required name="img_photo">
+                                    <input type="file" required name="image">
                                 </div>
                                 <div class="col-sm-6 form-group">
                                     <label>Upload Signature</label>
-                                    <input type="file" required name="img_signature">
+                                    <input type="file" required name="signature">
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-lg btn-info">Submit</button>
+                            <button type="submit" class="btn btn-lg btn-info" name="submit">Submit</button>
                         </div>
                     </form>
                 </div>
             </div>
-        </div>
-    </form>
+    </div>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
