@@ -6,8 +6,24 @@ $connect = mysqli_connect($server, $username);
 mysqli_select_db($connect, 'dseu');
 if (isset($_POST['reset'])) {
     $email = $_POST['email'];
-    $sql = "";
+    $sql = "SELECT password  FROM `register` WHERE email='$email'";
     $query = mysqli_query($connect, $sql);
+    $count = mysqli_num_rows($query);
+    echo $count;
+    if ($count > 0) {
+        ?>
+        <script>
+            alert("We have sent an email with password .");
+        </script>
+    <?php
+    } else {
+        ?>
+        <script>
+            alert("You are not registered!!");
+        </script>
+    <?php
+    }
+    // header('location:forgotpassword.php');
 }
 ?>
 <!DOCTYPE html>
@@ -25,26 +41,29 @@ if (isset($_POST['reset'])) {
 </head>
 
 <body>
-    <div class="main-container">
-        <div class="card text-center" style="width: 600px;">
-            <div class="card-header h5 text-black bg-primary">Password Reset</div>
-            <div class="card-body px-5">
-                <p class="card-text py-2">
-                    Enter your email address and we'll send you an email with instructions to reset your password.
-                </p>
-                <div class="form-outline">
-                    <input type="email" id="typeEmail" class="form-control my-3" placeholder="ENTER YOUR EMAIL" />
-                    <!-- <label class="form-label" for="typeEmail">Email input</label> -->
-                </div>
-                <button name="reset" class="btn btn-primary w-100 text-black">Reset password</button>
-                <div class="d-flex justify-content-between mt-4">
-                    <a class="" href="login.php">Login</a>
-                    <a class="" href="register.php">Register</a>
+    <form method="post">
+        <div class="main-container">
+            <div class="card text-center" style="width: 600px;">
+                <div class="card-header h5 text-black bg-primary">Password Reset</div>
+                <div class="card-body px-5">
+                    <p class="card-text py-2">
+                        Enter your email address and we'll send you an email with instructions to reset your password.
+                    </p>
+                    <div class="form-outline">
+                        <input type="email" id="typeEmail" class="form-control my-3" placeholder="ENTER YOUR EMAIL"
+                            name="email" />
+                        <!-- <label class="form-label" for="typeEmail">Email input</label> -->
+                    </div>
+                    <button name="reset" class="btn btn-primary w-100 text-black" type="submit">Reset password</button>
+                    <div class="d-flex justify-content-between mt-4">
+                        <a class="" href="login.php">Login</a>
+                        <a class="" href="register.php">Register</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
+    </form>
 </body>
 
 </html>

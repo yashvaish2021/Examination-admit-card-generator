@@ -7,9 +7,45 @@ if (isset($_POST['register'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $q = " INSERT INTO `register`(`name`, `email`, `password`, `datetime`) VALUES ('$name','$email','$password',current_timestamp())";
+    $repassword = $_POST['repassword'];
+    $q = " INSERT INTO `register`(`name`, `email`, `password`,`repassword`, `datetime`) VALUES ('$name','$email','$password','$repassword',current_timestamp())";
     $query = mysqli_query($con, $q);
     echo "<script> window.location = 'register.php';</script>";
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (empty($_POST["name"])) {
+            $nameErr = "Name is required";
+        } else {
+            $name = test_input($_POST["name"]);
+            // check if name only contains letters and whitespace
+            if (!preg_match("/^[a-zA-Z-' ]*$/", $name)) {
+                $nameErr = "Only letters and white space allowed";
+            }
+        }
+
+        if (empty($_POST["email"])) {
+            $emailErr = "Email is required";
+        } else {
+            $email = test_input($_POST["email"]);
+            // check if e-mail address is well-formed
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $emailErr = "Invalid email format";
+            }
+        }
+        if ($_POST["password"] === $_POST["repassword"]) {
+            echo "<script> alert(' Entered passwords are same') </script>";
+        } else {
+            echo "<script> alert(' Please enter same passwords ') </script>";
+        }
+
+        function test_input($data)
+        {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+        }
+
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -42,7 +78,7 @@ if (isset($_POST['register'])) {
                                             <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
                                                 <input type="text" id="form3Example1c" name="name" class="form-control"
-                                                    placeholder="ENTER YOUR NAME" />
+                                                    placeholder="ENTER YOUR NAME" required />
                                                 <label class="form-label" for="form3Example1c">Your Name</label>
                                             </div>
                                         </div>
@@ -51,7 +87,7 @@ if (isset($_POST['register'])) {
                                             <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
                                                 <input type="email" id="form3Example3c" name="email"
-                                                    class="form-control" placeholder="ENTER YOUR EMAIL" />
+                                                    class="form-control" placeholder="ENTER YOUR EMAIL" required />
                                                 <label class="form-label" for="form3Example3c">Your Email</label>
                                             </div>
                                         </div>
@@ -60,7 +96,7 @@ if (isset($_POST['register'])) {
                                             <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
                                                 <input type="password" id="form3Example4c" name="password"
-                                                    class="form-control" placeholder="ENTER PASSWORD" />
+                                                    class="form-control" placeholder="ENTER PASSWORD" required />
                                                 <label class="form-label" for="form3Example4c">Password</label>
                                             </div>
                                         </div>
@@ -69,8 +105,9 @@ if (isset($_POST['register'])) {
                                             <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
                                                 <input type="password" id="form3Example4cd" class="form-control"
-                                                    placeholder="RE-ENTER PASSWORD" />
-                                                <label class="form-label" for="form3Example4cd">Repeat your
+                                                    placeholder="RE-ENTER PASSWORD" name="repassword" />
+                                                <label class="form-label" for="form3Example4cd">Repeat
+                                                    your
                                                     password</label>
                                             </div>
                                         </div>

@@ -1,18 +1,18 @@
 <?php
-    $server = "localhost";
-    $username = "root";
-    $connect = mysqli_connect($server, $username);
-    mysqli_select_db($connect,'dseu');
+$server = "localhost";
+$username = "root";
+$connect = mysqli_connect($server, $username);
+mysqli_select_db($connect, 'dseu');
 
-    if (isset($_POST['submit'])) {
-        $firstName = $_POST['firstname'];
-        $lastName = $_POST['lastname'];
-        $email = $_POST['email'];
-        $comment = $_POST['comment'];
-        $sql = "INSERT INTO `contact-us` (`firstname`, `lastname`, `email`, `comment`,`datetime`) VALUES ( '$firstName', '$lastName', '$email', '$comment', current_timestamp())";
-        $query = mysqli_query($connect, $sql);
-        echo "<script>window.location = 'contact-us.php'</script>";
-    }
+if (isset($_POST['submit'])) {
+    $firstName = $_POST['firstname'];
+    $lastName = $_POST['lastname'];
+    $email = $_POST['email'];
+    $comment = $_POST['comment'];
+    $sql = "INSERT INTO `contactus` (`firstname`, `lastname`, `email`, `comment`,`datetime`) VALUES ( '$firstName', '$lastName', '$email', '$comment', current_timestamp())";
+    $query = mysqli_query($connect, $sql);
+    echo "<script>window.location = 'contact-us.php'</script>";
+}
 ?>
 
 <!DOCTYPE html>
@@ -86,13 +86,15 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="First Name">First Name:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="First Name" placeholder="Enter First Name" name="firstname">
+                                <input type="text" class="form-control" id="First Name" placeholder="Enter First Name"
+                                    name="firstname">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="Last Name">Last Name:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="Last Name" placeholder="Enter Last Name" name="lastname">
+                                <input type="text" class="form-control" id="Last Name" placeholder="Enter Last Name"
+                                    name="lastname">
                             </div>
                         </div>
                         <div class="form-group">
