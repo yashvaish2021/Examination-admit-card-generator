@@ -9,7 +9,7 @@ if (isset($_POST['register'])) {
     $password = $_POST['password'];
     $q = " INSERT INTO `register`(`name`, `email`, `password`, `datetime`) VALUES ('$name','$email','$password',current_timestamp())";
     $query = mysqli_query($con, $q);
-    echo "<script> window.location = 'register.php';</script>";
+    echo "<script> window.location = 'form.php';</script>";
 }
 ?>
 <!DOCTYPE html>

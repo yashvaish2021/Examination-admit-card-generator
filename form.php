@@ -19,10 +19,16 @@ session_start();
         $email = $_POST['email'];
         $gender = $_POST['gender'];
         $photo = $_FILES['image']['name'];
+        $tmp_photo = $_FILES['image']['tmp_name'];
         $signature = $_FILES['signature']['name'];
-        $result = " INSERT INTO `admitcard`(`name`, `dob`, `address`, `department`, `semester`, `center`, `father_name`, `mother_name`, `phone`, `university_number`, `email`, `gender`, `image`, `signature`) VALUES ('$fullName', '$date', '$address', '$department', '$semester', '$testcenter', '$fathersName', '$mothersName', '$phone', '$universityNumber', '$email', '$gender', '$photo', '$signature') ";
+        $tmp_signature = $_FILES['signature']['tmp_name'];
+        $folder_a = "images/".$photo;
+        $folder_b = "images/".$signature;
+        move_uploaded_file($tmp_photo,$folder_a);
+        move_uploaded_file($tmp_signature,$folder_b);
+        $result = " INSERT INTO `admitcard`(`name`, `dob`, `address`, `department`, `semester`, `center`, `father_name`, `mother_name`, `phone`, `university_number`, `email`, `gender`, `image`, `signature`) VALUES ('$fullName', '$date', '$address', '$department', '$semester', '$testcenter', '$fathersName', '$mothersName', '$phone', '$universityNumber', '$email', '$gender', '$folder_a', '$folder_b') ";
         $query = mysqli_query($connect,$result);
-        echo "<script>window.location = 'form.php'</script>";
+        echo "<script>window.location = 'admit-card.php'</script>";
     }
 ?>
 
@@ -43,7 +49,7 @@ session_start();
         <h1 class="well">Registration Form</h1>
             <div class="col-lg-12 well">
                 <div class="row">
-                    <form method="post" action="" enctype="multipart/form-data">
+                    <form method="POST" action="" enctype="multipart/form-data">
                         <div class="col-sm-12">
                             <div class="row">
                                 <div class="col-sm-6 form-group">

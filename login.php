@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $con = mysqli_connect('localhost','root');
 	mysqli_select_db($con,'dseu');
 	if(isset($_POST['submit'])){
@@ -9,7 +10,16 @@
 		$count = mysqli_num_rows($query);
 		if($count>0){
 			echo "Login Successfully";
-			echo " <script> window.location = 'admit-card.php'; </script> ";
+            $_SESSION['email'] = $username;
+            $que = " SELECT * FROM admitcard WHERE email='$username' ";
+		    $query = mysqli_query($con,$que);
+		    $count = mysqli_num_rows($query);
+            if($count == 1){
+                echo " <script> window.location = 'admit-card.php'; </script> ";
+            }
+            else{
+                echo " <script> window.location = 'form.php'; </script> ";
+            }
 		}
 		else{
 			echo "Fail to Login";
